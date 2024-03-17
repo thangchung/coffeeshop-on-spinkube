@@ -1,0 +1,84 @@
+{
+	"name": "CoffeeShop on SpinKube",
+	"dockerFile": "Dockerfile",
+	"workspaceFolder": "/workspaces/coffeeshop-on-spinkube",
+	"onCreateCommand": "bash ./.devcontainer/on-create.sh",
+	"postCreateCommand": "bash ./.devcontainer/post-create.sh",
+	"runArgs": [
+		"--privileged",
+		"--init"
+	],
+	// Features to add to the dev container. More info: https://containers.dev/features
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {},
+		"ghcr.io/devcontainers/features/azure-cli:1": {},
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+		"ghcr.io/rio/features/k3d:1": {},
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"configureZshAsDefaultShell": true
+		},
+		"ghcr.io/dapr/cli/dapr-cli:0": {
+            "version": "1.13.0"
+        }
+	},
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"mutantdino.resourcemonitor",
+				"humao.rest-client",
+				"ms-vscode.makefile-tools",
+				"davidanson.vscode-markdownlint",
+				"cweijan.vscode-database-client2",
+				"bierner.markdown-mermaid",
+				"ms-kubernetes-tools.vscode-kubernetes-tools",
+				"ms-azuretools.vscode-docker",
+				"dunn.redis",
+				// "GitHub.copilot",
+				//rust
+                "vadimcn.vscode-lldb",
+                "rust-lang.rust-analyzer",
+                "tamasfe.even-better-toml",
+                "serayuzgur.crates",
+                "esbenp.prettier-vscode",
+                "foxundermoon.shell-format",
+                "irongeek.vscode-env",
+                "golang.Go",
+				"ms-dotnettools.csdevkit",
+                "ms-dotnettools.vscode-dotnet-runtime",
+                "ms-dotnettools.csharp",
+                "alexcvzz.vscode-sqlite",
+                "qwtel.sqlite-viewer",
+                "kennylong.kubernetes-yaml-formatter",
+				//wasm
+				"dtsvet.vscode-wasm",
+				"bytecodealliance.wit-idl",
+				"ms-vscode.wasm-dwarf-debugging"
+			]
+		}
+	},
+	"remoteEnv": {
+		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
+	},
+	// Use 'portsAttributes' to set default properties for specific forwarded ports.
+	// More info: https://containers.dev/implementors/json_reference/#port-attributes
+	"portsAttributes": {
+		"8081": {
+			"label": "k3s",
+			"onAutoForward": "silent"
+		},
+		"5019": {
+			"label": "aspire",
+			"onAutoForward": "silent"
+		},
+		"15672": {
+			"label": "rabbitmq",
+			"onAutoForward": "silent"
+		}
+	},
+	"otherPortsAttributes": {
+		"onAutoForward": "ignore"
+	}
+}

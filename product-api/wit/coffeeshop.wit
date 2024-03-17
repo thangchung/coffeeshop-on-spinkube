@@ -1,0 +1,32 @@
+package example:coffeeshop;
+
+interface api {
+    record item-type-model {
+        name: string,
+        item-type: item-type,
+        price: float32,
+        image: string
+    }
+
+    enum item-type {
+        // Beverages
+        cappuccino,
+        coffee-black,
+        coffee-with-room,
+        espresso,
+        espresso-double,
+        latte,
+        // Food
+        cakepop,
+        croissant,
+        muffin,
+        croissant-chocolate
+    }
+
+    get-item-types: func() -> list<item-type-model>;
+    get-item-by-types: func(types: list<string>) -> list<item-type-model>;
+}
+
+world hostapp {
+    import api;
+}
