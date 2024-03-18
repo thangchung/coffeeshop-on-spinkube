@@ -9,6 +9,10 @@ while (! kubectl cluster-info ); do
   sleep 1
 done
 
+cargo install wasm-tools \
+    && cargo install cargo-component \
+    && cargo install cargo-shear
+
 ## dotnet
 dotnet restore
 

@@ -1,0 +1,18 @@
+[package]
+name = "product-core"
+authors = ["thangchung <thangchung@nomail.com>"]
+description = ""
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wit-bindgen-rt = "0.22"
+
+[package.metadata.component]
+package = "example:coffeeshop"
+target = { path = "../coffeeshop.wit", world = "product-core" }
+
+[package.metadata.component.dependencies]

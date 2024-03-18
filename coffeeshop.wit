@@ -1,6 +1,6 @@
 package example:coffeeshop;
 
-interface api {
+interface product-api {
     record item-type-model {
         name: string,
         item-type: item-type,
@@ -27,6 +27,10 @@ interface api {
     get-item-by-types: func(types: list<string>) -> list<item-type-model>;
 }
 
-world hostapp {
-    import api;
+world product-core {
+    export product-api;
+}
+
+world product-host {
+    import product-api;
 }

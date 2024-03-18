@@ -11,8 +11,7 @@ route = "/..."
 component = "product-api"
 
 [component.product-api]
-source = "target/wasm32-wasi/release/product_api.wasm"
+source = "service.wasm"
 allowed_outbound_hosts = []
 [component.product-api.build]
-command = "cargo build --target wasm32-wasi --release"
-watch = ["src/**/*.rs", "Cargo.toml"]
+command = "./build.sh"
