@@ -1,0 +1,14 @@
+apiVersion: core.spinoperator.dev/v1alpha1
+kind: SpinApp
+metadata:
+  name: product-app
+  annotations:
+    dapr.io/enabled: "true"
+    dapr.io/app-id: "product-app"
+    dapr.io/app-port: "80"
+    dapr.io/enable-api-logging: "true"
+spec:
+  image: "ttl.sh/coffeeshop-product-api-spin:24h"
+  executor: containerd-shim-spin
+  # replicas: 1
+  enableAutoscaling: true
