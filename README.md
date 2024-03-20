@@ -4,6 +4,13 @@
 
 `cargo-component` `spin v2.3.1` `wasm-tools` `k3d` `dapr` `spinkube`
 
+## Build and push apps
+
+```sh
+cd product-api
+spin registry push --build ttl.sh/coffeeshop-product-api-spin:24h
+```
+
 ## Install spinkube on k3d
 
 ```sh
@@ -25,11 +32,37 @@ helm install spin-operator \
 kubectl apply -f https://github.com/spinkube/spin-operator/releases/download/v0.1.0/spin-operator.shim-executor.yaml
 ```
 
-## Get starting
+## Install Dapr
 
 ```sh
-cd product-api
-spin registry push --build ttl.sh/coffeeshop-product-api-spin:24h
+> dapr --version
+CLI version: 1.13.0 
+Runtime version: n/a
+```
+
+```sh
+# for demo only
+> dapr init -k
+```
+
+```sh
+> helm install my-redis oci://registry-1.docker.io/bitnamicharts/redis --set architecture=standalone --set global.redis.password=P@ssw0rd
+```
+
+```sh
+> kubectl apply -f deploys/dapr/
+> kubectl get components
+```
+
+## Deploy SpinApp
+
+```sh
+> kubectl apply -f deploys/spinapp-product-api.yaml
+> kubectl get po
+```
+
+```sh
+> kubectl apply -f deploys/ingress.yaml
 ```
 
 ### Dapr Shared mode

@@ -25,10 +25,10 @@ RUN curl -fsSL https://developer.fermyon.com/downloads/install.sh | bash && mv s
 RUN spin plugin install js2wasm -y
 RUN spin plugin install -y -u https://raw.githubusercontent.com/chrismatteson/spin-plugin-k8s/main/k8s.json
 
-# Install Wasm tools
-# RUN cargo install wasm-tools
-# RUN cargo install wasm-tools \
-    # cargo install cargo-component
+# # rust
+# RUN /root/.cargo/bin/cargo install wasm-tools \
+#     && /root/.cargo/bin/cargo install cargo-component \
+#     && /root/.cargo/bin/cargo install cargo-shear
 
 ## https://github.com/dotnet/aspire/blob/main/docs/using-latest-daily.md
 RUN dotnet workload update --skip-sign-check --source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet8/nuget/v3/index.json \
