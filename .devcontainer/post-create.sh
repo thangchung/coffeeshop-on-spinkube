@@ -5,7 +5,7 @@ while (! kubectl cluster-info ); do
   # Docker takes a few seconds to initialize
   echo "Waiting for Docker to launch..."
   k3d cluster delete wasm-cluster
-  k3d cluster create wasm-cluster --image ghcr.io/spinkube/containerd-shim-spin/k3d:v0.13.0 --port '8081:80@loadbalancer' --agents 2
+  k3d cluster create wasm-cluster --image ghcr.io/spinkube/containerd-shim-spin/k3d:v0.13.1 --port '8081:80@loadbalancer' --agents 2
   sleep 1
 done
 

@@ -1,6 +1,6 @@
-use bindings::exports::example::coffeeshop::product_api::{Guest, ItemTypeModel};
+use bindings::exports::coffeeshop::product::api::{Guest, ItemType};
 
-use crate::bindings::exports::example::coffeeshop::product_api::ItemType;
+use crate::bindings::exports::coffeeshop::product::api::ItemTypeModel;
 
 #[allow(warnings)]
 mod bindings;
@@ -26,29 +26,29 @@ impl From<i8> for ItemType {
 struct ProductCore;
 
 impl Guest for ProductCore {
-    fn get_item_types() -> Vec<bindings::exports::example::coffeeshop::product_api::ItemTypeModel> {
+    fn get_item_types() -> Vec<ItemTypeModel> {
         get_item_types()
     }
 
     fn get_item_by_types(
         types: Vec<String>,
-    ) -> Vec<bindings::exports::example::coffeeshop::product_api::ItemTypeModel> {
-        let mut temp: Vec<ItemTypeModel> = Vec::new();
+    ) -> Vec<ItemTypeModel> {
+        let mut response_data: Vec<ItemTypeModel> = Vec::new();
 
         for item in get_item_types() {
             let item_cloned = item.clone();
             for item_type in types.clone().into_iter() {
                 let Ok(item_type) = item_type.parse::<i8>() else {
-                    return temp;
+                    return response_data;
                 };
 
                 if item_cloned.item_type == item_type.into() {
-                    temp.push(item_cloned.clone())
+                    response_data.push(item_cloned.clone())
                 }
             }
         }
 
-        temp
+        response_data
     }
 }
 

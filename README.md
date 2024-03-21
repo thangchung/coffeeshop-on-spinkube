@@ -17,6 +17,7 @@ spin registry push --build ttl.sh/coffeeshop-product-api-spin:24h
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.14.3/cert-manager.yaml
 kubectl apply -f https://github.com/spinkube/spin-operator/releases/download/v0.1.0/spin-operator.runtime-class.yaml
 kubectl apply -f https://github.com/spinkube/spin-operator/releases/download/v0.1.0/spin-operator.crds.yaml
+kubectl apply -f https://github.com/spinkube/spin-operator/releases/download/v0.1.0/spin-operator.shim-executor.yaml
 ```
 
 ```sh
@@ -26,10 +27,6 @@ helm install spin-operator \
   --version 0.1.0 \
   --wait \
   oci://ghcr.io/spinkube/charts/spin-operator
-```
-
-```sh
-kubectl apply -f https://github.com/spinkube/spin-operator/releases/download/v0.1.0/spin-operator.shim-executor.yaml
 ```
 
 ## Install Dapr

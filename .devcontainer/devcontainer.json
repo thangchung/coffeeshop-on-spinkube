@@ -39,9 +39,9 @@
 				// "GitHub.copilot",
 				//rust
                 "vadimcn.vscode-lldb",
-                "rust-lang.rust-analyzer",
+                "1yib.rust-bundle",
                 "tamasfe.even-better-toml",
-                "serayuzgur.crates",
+                // "serayuzgur.crates",
                 "esbenp.prettier-vscode",
                 "foxundermoon.shell-format",
                 "irongeek.vscode-env",

@@ -16,8 +16,8 @@ serde = { version = "1.0.197", features = ["derive"] }
 serde_json = "1.0.114"
 
 [package.metadata.component]
-package = "example:coffeeshop"
-target = { path = "../coffeeshop.wit", world = "product-host"  }
+package = "coffeeshop:product"
+target = { path = "../wit/coffeeshop_product.wit", world = "host"  }
 
 [package.metadata.component.bindings]
 derives = ["serde::Serialize", "serde::Deserialize"]

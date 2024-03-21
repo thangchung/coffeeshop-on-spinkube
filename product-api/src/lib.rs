@@ -1,8 +1,9 @@
 use anyhow::Result;
-use bindings::example::coffeeshop::product_api::{get_item_by_types, get_item_types};
 use serde_json::json;
 use spin_sdk::http::{IntoResponse, Params, Request, Response};
 use spin_sdk::http_component;
+
+use crate::bindings::coffeeshop::product::api::{get_item_by_types, get_item_types};
 
 mod bindings;
 
