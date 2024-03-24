@@ -5,8 +5,11 @@
 	"onCreateCommand": "bash ./.devcontainer/on-create.sh",
 	"postCreateCommand": "bash ./.devcontainer/post-create.sh",
 	"runArgs": [
-		"--privileged",
-		"--init"
+		"--cap-add=SYS_PTRACE",
+        "--security-opt",
+        "seccomp=unconfined",
+        "--privileged",
+        "--init"
 	],
 	// Features to add to the dev container. More info: https://containers.dev/features
 	"features": {

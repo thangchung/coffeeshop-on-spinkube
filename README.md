@@ -4,13 +4,6 @@
 
 `cargo-component` `spin v2.3.1` `wasm-tools` `k3d` `dapr` `spinkube`
 
-## Build and push apps
-
-```sh
-cd product-api
-spin registry push --build ttl.sh/coffeeshop-product-api-spin:24h
-```
-
 ## Install spinkube on k3d
 
 ```sh
@@ -51,6 +44,19 @@ Runtime version: n/a
 > kubectl get components
 ```
 
+## Build and push apps
+
+```sh
+> cargo component new --lib counter-api
+> cd counter-api
+> cargo component build --release
+```
+
+```sh
+cd product-api
+spin registry push --build ttl.sh/coffeeshop-product-api-spin:24h
+```
+
 ## Deploy SpinApp
 
 ```sh
@@ -80,3 +86,4 @@ Runtime version: n/a
 
 - https://www.spinkube.dev/docs/spin-operator/quickstart/
 - https://github.com/dapr-sandbox/dapr-shared
+- https://github.com/bytecodealliance/cargo-component
