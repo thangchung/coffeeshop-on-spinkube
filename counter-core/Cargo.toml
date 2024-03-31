@@ -1,0 +1,17 @@
+[package]
+name = "counter-core"
+authors = ["thangchung <thangchung@nomail.com>"]
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+wit-bindgen-rt = "0.22"
+
+[package.metadata.component]
+package = "coffeeshop:counter"
+target = { path = "../wit/coffeeshop_counter.wit", world = "core" }
+
+[package.metadata.component.dependencies]

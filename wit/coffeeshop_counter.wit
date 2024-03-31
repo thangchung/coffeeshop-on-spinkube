@@ -1,0 +1,88 @@
+package coffeeshop:counter;
+
+interface api {
+    type id = string;
+
+    record order-item-line-dto {
+        item-line-id: id,
+        item-type: item-type,
+        item-status: item-status,
+    }
+
+    record order-dto {
+        id: id,
+        order-source: order-source,
+        loyalty-member-id: id,
+        order-status: order-status,
+        location: location,
+        item-lines: list<order-item-line-dto>
+    }
+
+    record command-item {
+        item-type: item-type
+    }
+
+    record place-order-command {
+        id: id,
+        command-type: command-type,
+        order-source: order-source,
+        location: location,
+        loyalty-member-id: id,
+        barista-items: option<list<command-item>>,
+        kitchen-items: option<list<command-item>>,
+        timestamp: u64
+    }
+
+    enum item-type {
+        // Beverages
+        cappuccino,
+        coffee-black,
+        coffee-with-room,
+        espresso,
+        espresso-double,
+        latte,
+        // Food
+        cakepop,
+        croissant,
+        muffin,
+        croissant-chocolate
+    }
+
+    enum item-status {
+        placed,
+        in-progress,
+        fulfilled
+    }
+
+    enum order-source {
+        counter,
+        web
+    }
+
+    enum order-status {
+        placed,
+        in-progress,
+        fulfilled
+    }
+
+    enum location {
+        hochiminh,
+        hanoi,
+        danang,
+    }
+
+    enum command-type {
+        place-order
+    }
+
+    get-fulfillment-order: func() -> list<order-dto>;
+    place-order: func(command: place-order-command) -> bool;
+}
+
+world core {
+    export api;
+}
+
+world host {
+    import api;
+}

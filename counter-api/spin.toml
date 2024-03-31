@@ -1,0 +1,17 @@
+spin_manifest_version = 2
+
+[application]
+name = "counter-api"
+version = "0.1.0"
+authors = ["thangchung <thangchung@nomail.com>"]
+description = ""
+
+[[trigger.http]]
+route = "/..."
+component = "counter-api"
+
+[component.counter-api]
+source = "service.wasm"
+allowed_outbound_hosts = []
+[component.counter-api.build]
+command = "./build.sh"
