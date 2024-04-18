@@ -1,5 +1,4 @@
 cargo component build --release --manifest-path ../counter-core/Cargo.toml 
-
 cargo component build --release
 
 # because of `error: `counter_core` is not in kebab case (at offset 0x0)`

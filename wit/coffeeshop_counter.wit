@@ -1,6 +1,6 @@
 package coffeeshop:counter;
 
-interface api {
+interface shared {
     type id = string;
 
     record order-item-line-dto {
@@ -20,17 +20,6 @@ interface api {
 
     record command-item {
         item-type: item-type
-    }
-
-    record place-order-command {
-        id: id,
-        command-type: command-type,
-        order-source: order-source,
-        location: location,
-        loyalty-member-id: id,
-        barista-items: option<list<command-item>>,
-        kitchen-items: option<list<command-item>>,
-        timestamp: u64
     }
 
     enum item-type {
@@ -73,6 +62,21 @@ interface api {
 
     enum command-type {
         place-order
+    }
+}
+
+interface api {
+    use shared.{id, command-type, order-source, location, command-item, order-dto, order-item-line-dto};
+
+    record place-order-command {
+        id: id,
+        command-type: command-type,
+        order-source: order-source,
+        location: location,
+        loyalty-member-id: id,
+        barista-items: option<list<command-item>>,
+        kitchen-items: option<list<command-item>>,
+        timestamp: u64,
     }
 
     get-fulfillment-order: func() -> list<order-dto>;

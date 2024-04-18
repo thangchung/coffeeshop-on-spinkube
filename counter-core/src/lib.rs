@@ -10,7 +10,7 @@ impl Guest for CounterCoreComponent {
         vec![]
     }
     
-    fn place_order(command: PlaceOrderCommand) -> bool {
+    fn place_order(_command: PlaceOrderCommand) -> bool {
         true
     }
 }

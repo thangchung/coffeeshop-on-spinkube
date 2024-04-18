@@ -15,4 +15,5 @@ Cargo.lock
 
 .mono
 
-/**/service.wasm
+**/service.wasm
+**/.spin

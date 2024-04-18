@@ -9,6 +9,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 wit-bindgen-rt = "0.22"
+uuid = { version = "1.0", features = ["serde", "v4"] }
 
 [package.metadata.component]
 package = "coffeeshop:counter"

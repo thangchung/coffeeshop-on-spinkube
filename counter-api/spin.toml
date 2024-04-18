@@ -12,6 +12,7 @@ component = "counter-api"
 
 [component.counter-api]
 source = "service.wasm"
-allowed_outbound_hosts = []
+environment = { DAPR_URL = "http://localhost:3500" }
+allowed_outbound_hosts = ["*://*:*"]
 [component.counter-api.build]
 command = "./build.sh"

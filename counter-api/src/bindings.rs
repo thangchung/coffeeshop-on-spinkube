@@ -4,7 +4,7 @@
 pub mod coffeeshop {
     pub mod counter {
         #[allow(clippy::all)]
-        pub mod api {
+        pub mod shared {
             #[used]
             #[doc(hidden)]
             #[cfg(target_arch = "wasm32")]
@@ -281,7 +281,22 @@ pub mod coffeeshop {
                     }
                 }
             }
+        }
 
+        #[allow(clippy::all)]
+        pub mod api {
+            #[used]
+            #[doc(hidden)]
+            #[cfg(target_arch = "wasm32")]
+            static __FORCE_SECTION_REF: fn() =
+                super::super::super::__link_custom_section_describing_imports;
+            use super::super::super::_rt;
+            pub type Id = super::super::super::coffeeshop::counter::shared::Id;
+            pub type CommandType = super::super::super::coffeeshop::counter::shared::CommandType;
+            pub type OrderSource = super::super::super::coffeeshop::counter::shared::OrderSource;
+            pub type Location = super::super::super::coffeeshop::counter::shared::Location;
+            pub type CommandItem = super::super::super::coffeeshop::counter::shared::CommandItem;
+            pub type OrderDto = super::super::super::coffeeshop::counter::shared::OrderDto;
             #[derive(Clone, serde::Deserialize, serde::Serialize)]
             pub struct PlaceOrderCommand {
                 pub id: Id,
@@ -361,24 +376,24 @@ pub mod coffeeshop {
                                     let l17 = i32::from(*base.add(8).cast::<u8>());
                                     let l18 = i32::from(*base.add(9).cast::<u8>());
 
-                                    OrderItemLineDto {
-                                        item_line_id: _rt::string_lift(bytes16),
-                                        item_type: ItemType::_lift(l17 as u8),
-                                        item_status: ItemStatus::_lift(l18 as u8),
-                                    }
+                                    super::super::super::coffeeshop::counter::shared::OrderItemLineDto{
+                    item_line_id: _rt::string_lift(bytes16),
+                    item_type: super::super::super::coffeeshop::counter::shared::ItemType::_lift(l17 as u8),
+                    item_status: super::super::super::coffeeshop::counter::shared::ItemStatus::_lift(l18 as u8),
+                  }
                                 };
                                 result19.push(e19);
                             }
                             _rt::cabi_dealloc(base19, len19 * 12, 4);
 
-                            OrderDto {
-                                id: _rt::string_lift(bytes5),
-                                order_source: OrderSource::_lift(l6 as u8),
-                                loyalty_member_id: _rt::string_lift(bytes9),
-                                order_status: OrderStatus::_lift(l10 as u8),
-                                location: Location::_lift(l11 as u8),
-                                item_lines: result19,
-                            }
+                            super::super::super::coffeeshop::counter::shared::OrderDto{
+                id: _rt::string_lift(bytes5),
+                order_source: super::super::super::coffeeshop::counter::shared::OrderSource::_lift(l6 as u8),
+                loyalty_member_id: _rt::string_lift(bytes9),
+                order_status: super::super::super::coffeeshop::counter::shared::OrderStatus::_lift(l10 as u8),
+                location: super::super::super::coffeeshop::counter::shared::Location::_lift(l11 as u8),
+                item_lines: result19,
+              }
                         };
                         result20.push(e20);
                     }
@@ -426,9 +441,7 @@ pub mod coffeeshop {
                             for (i, e) in vec4.into_iter().enumerate() {
                                 let base = result4.add(i * 1);
                                 {
-                                    let CommandItem {
-                                        item_type: item_type3,
-                                    } = e;
+                                    let super::super::super::coffeeshop::counter::shared::CommandItem{ item_type:item_type3, } = e;
                                     *base.add(0).cast::<u8>() = (item_type3.clone() as i32) as u8;
                                 }
                             }
@@ -458,9 +471,7 @@ pub mod coffeeshop {
                             for (i, e) in vec7.into_iter().enumerate() {
                                 let base = result7.add(i * 1);
                                 {
-                                    let CommandItem {
-                                        item_type: item_type6,
-                                    } = e;
+                                    let super::super::super::coffeeshop::counter::shared::CommandItem{ item_type:item_type6, } = e;
                                     *base.add(0).cast::<u8>() = (item_type6.clone() as i32) as u8;
                                 }
                             }
@@ -601,9 +612,9 @@ mod _rt {
 #[cfg(target_arch = "wasm32")]
 #[link_section = "component-type:wit-bindgen:0.21.0:host:encoded world"]
 #[doc(hidden)]
-pub static __WIT_BINDGEN_COMPONENT_TYPE: [u8; 929] = *b"\
-\0asm\x0d\0\x01\0\0\x19\x16wit-component-encoding\x04\0\x07\xa6\x06\x01A\x02\x01\
-A\x02\x01B\x1e\x01s\x04\0\x02id\x03\0\0\x01m\x0a\x0acappuccino\x0ccoffee-black\x10\
+pub static __WIT_BINDGEN_COMPONENT_TYPE: [u8; 1222] = *b"\
+\0asm\x0d\0\x01\0\0\x19\x16wit-component-encoding\x04\0\x07\xcb\x08\x01A\x02\x01\
+A\x0b\x01B\x15\x01s\x04\0\x02id\x03\0\0\x01m\x0a\x0acappuccino\x0ccoffee-black\x10\
 coffee-with-room\x08espresso\x0fespresso-double\x05latte\x07cakepop\x09croissant\
 \x06muffin\x13croissant-chocolate\x04\0\x09item-type\x03\0\x02\x01r\x01\x09item-\
 type\x03\x04\0\x0ccommand-item\x03\0\x04\x01m\x03\x06placed\x0bin-progress\x09fu\
@@ -613,14 +624,21 @@ er\x03web\x04\0\x0corder-source\x03\0\x0a\x01m\x03\x06placed\x0bin-progress\x09f
 ulfilled\x04\0\x0corder-status\x03\0\x0c\x01m\x03\x09hochiminh\x05hanoi\x06danan\
 g\x04\0\x08location\x03\0\x0e\x01p\x09\x01r\x06\x02id\x01\x0corder-source\x0b\x11\
 loyalty-member-id\x01\x0corder-status\x0d\x08location\x0f\x0aitem-lines\x10\x04\0\
-\x09order-dto\x03\0\x11\x01m\x01\x0bplace-order\x04\0\x0ccommand-type\x03\0\x13\x01\
-p\x05\x01k\x15\x01r\x08\x02id\x01\x0ccommand-type\x14\x0corder-source\x0b\x08loc\
-ation\x0f\x11loyalty-member-id\x01\x0dbarista-items\x16\x0dkitchen-items\x16\x09\
-timestampw\x04\0\x13place-order-command\x03\0\x17\x01p\x12\x01@\0\0\x19\x04\0\x15\
-get-fulfillment-order\x01\x1a\x01@\x01\x07command\x18\0\x7f\x04\0\x0bplace-order\
-\x01\x1b\x03\x01\x16coffeeshop:counter/api\x05\0\x04\x01\x17coffeeshop:counter/h\
-ost\x04\0\x0b\x0a\x01\0\x04host\x03\0\0\0G\x09producers\x01\x0cprocessed-by\x02\x0d\
-wit-component\x070.201.0\x10wit-bindgen-rust\x060.21.0";
+\x09order-dto\x03\0\x11\x01m\x01\x0bplace-order\x04\0\x0ccommand-type\x03\0\x13\x03\
+\x01\x19coffeeshop:counter/shared\x05\0\x02\x03\0\0\x02id\x02\x03\0\0\x0ccommand\
+-type\x02\x03\0\0\x0corder-source\x02\x03\0\0\x08location\x02\x03\0\0\x0ccommand\
+-item\x02\x03\0\0\x09order-dto\x02\x03\0\0\x13order-item-line-dto\x01B\x17\x02\x03\
+\x02\x01\x01\x04\0\x02id\x03\0\0\x02\x03\x02\x01\x02\x04\0\x0ccommand-type\x03\0\
+\x02\x02\x03\x02\x01\x03\x04\0\x0corder-source\x03\0\x04\x02\x03\x02\x01\x04\x04\
+\0\x08location\x03\0\x06\x02\x03\x02\x01\x05\x04\0\x0ccommand-item\x03\0\x08\x02\
+\x03\x02\x01\x06\x04\0\x09order-dto\x03\0\x0a\x02\x03\x02\x01\x07\x04\0\x13order\
+-item-line-dto\x03\0\x0c\x01p\x09\x01k\x0e\x01r\x08\x02id\x01\x0ccommand-type\x03\
+\x0corder-source\x05\x08location\x07\x11loyalty-member-id\x01\x0dbarista-items\x0f\
+\x0dkitchen-items\x0f\x09timestampw\x04\0\x13place-order-command\x03\0\x10\x01p\x0b\
+\x01@\0\0\x12\x04\0\x15get-fulfillment-order\x01\x13\x01@\x01\x07command\x11\0\x7f\
+\x04\0\x0bplace-order\x01\x14\x03\x01\x16coffeeshop:counter/api\x05\x08\x04\x01\x17\
+coffeeshop:counter/host\x04\0\x0b\x0a\x01\0\x04host\x03\0\0\0G\x09producers\x01\x0c\
+processed-by\x02\x0dwit-component\x070.201.0\x10wit-bindgen-rust\x060.21.0";
 
 #[inline(never)]
 #[doc(hidden)]
