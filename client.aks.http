@@ -1,0 +1,13 @@
+@host = http://localhost:80
+
+###
+GET {{host}}/ HTTP/1.1
+content-type: application/json
+
+###
+GET {{host}}/v1-get-item-types HTTP/1.1
+content-type: application/json
+
+###
+GET {{host}}/v1-get-items-by-types/1,2,3 HTTP/1.1
+content-type: application/json

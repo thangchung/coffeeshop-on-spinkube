@@ -9,9 +9,7 @@
     },
     "rust-analyzer.linkedProjects": [
         "product-api/Cargo.toml",
-        "product-core/Cargo.toml",
-        "counter-api/Cargo.toml",
-        "counter-core/Cargo.toml",
+        "product-core/Cargo.toml"
     ],
     "rust-analyzer.checkOnSave": true,
     // VS Code don't watch files under ./target

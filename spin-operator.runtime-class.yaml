@@ -1,0 +1,7 @@
+# might this will choose the node runner: https://github.com/spinkube/containerd-shim-spin/blob/1f44c1e5eeb5cedb3faf73fd659a70a48f41c6af/deployments/k8s/all-in-one-demo.yaml#L7
+# set labels: https://mac-blog.org.ua/aks-node-pool-add-label/
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: wasmtime-spin-v2
+handler: spin
